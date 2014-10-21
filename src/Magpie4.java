@@ -58,10 +58,10 @@ public class Magpie4
 		{
 			// Look for a two word (you <something> me)
 			// pattern
-			int psn = findKeyword(statement, "you", 0);
+			int psn = findKeyword(statement, "I", 0);
 
 			if (psn >= 0
-					&& findKeyword(statement, "me", psn) >= 0)
+					&& findKeyword(statement, "You", psn) >= 0)
 			{
 				response = transformYouMeStatement(statement);
 			}
@@ -115,10 +115,10 @@ public class Magpie4
 					.length() - 1);
 		}
 
-		int psnOfYou = findKeyword (statement, "I", 0);
-		int psnOfMe = findKeyword (statement, "you", psnOfYou + 3);
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfYou = findKeyword (statement, "you", psnOfI + 1);
 		
-		String restOfStatement = statement.substring(psnOfYou, psnOfMe).trim();
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou + 3).trim();
 		return "Why do you " + restOfStatement + " me?";
 
 	}
